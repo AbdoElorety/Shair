@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشاركة فيديوهات وصور - مثل ShareIt</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .share-box {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #5a67d8;
+        }
+        .media-container {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            text-align: center;
+        }
+        video, img {
+            max-width: 100%;
+            max-height: 500px;
+            width: auto;
+            margin: auto;
+            display: block;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .status {
+            text-align: center;
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        input[type="range"] {
+            width: 200px;
+        }
+        @media (max-width: 600px) {
+            .share-box input, .share-box select {
+                width: calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 مشاركة فيديوهات وصور</h1>
+        <p style="text-align:center">✨ أي جهاز يفتح هذا الرابط سيشاهد نفس المحتوى</p>
+
+        <div class="share-box">
+            <h3>➕ شارك ميديا جديدة:</h3>
+            <select id="mediaType">
+                <option value="video">فيديو</option>
+                <option value="image">صورة</option>
+            </select>
+            <input type="text" id="mediaUrl" placeholder="الرابط (URL)" size="40">
+            <button id="shareBtn">📤 مشاركة</button>
+            <div class="status">💡 مثال فيديو: https://www.w3schools.com/html/mov_bbb.mp4<br>
+            💡 مثال صورة: https://picsum.photos/800/400</div>
+        </div>
+
+        <div class="media-container" id="mediaContainer">
+            <div style="color:white; padding:50px; text-align:center;">⏳ انتظر مشاركة محتوى...</div>
+        </div>
+
+        <div class="controls">
+            <button id="playBtn">▶️ تشغيل</button>
+            <button id="pauseBtn">⏸️ إيقاف</button>
+            <input type="range" id="seekBar" min="0" max="100" value="0">
+        </div>
+        <div class="status" id="connectionStatus">🟢 متصل بالخادم...</div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
